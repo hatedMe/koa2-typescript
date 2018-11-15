@@ -1,16 +1,34 @@
 
 
-import { BaseContext } from 'koa';
+import { Context } from 'koa';
 
+import { DB } from '../DBinit';
+import user from '../models/user';
+
+
+
+interface iQuery {
+    serialNum : string , 
+}
 
 export default class UserController {
-    public static async getUser (ctx : BaseContext) {
-        let body  = await new Promise(function(resolve, reject) {
-            setTimeout(function () {
-                resolve('ok')
-            }, 2000);
-        });
-        ctx.status = 200;
-        ctx.body = body;
+    public static async getUser (ctx : Context) {
+        // const body = await new Promise<object>(function(resolve, reject) {
+        //     user.findOne({})
+        // });
+        console.log( ctx.request );
+        return ctx.body = 123
+        const { serialNum } = ctx.body;
+        const body = await user.findOne({serialNum});
+        ctx.body = body
     }
 }
+
+
+                                                         
+                                                                     
+                                 
+                                          
+                                          
+                             
+                             

@@ -2,6 +2,7 @@
 
 
 import * as Router from 'koa-router';
+import * as Koabody from 'koa-body';
 import { user } from '../controller/index';
 
 const router = new Router();
@@ -12,8 +13,12 @@ router.use( '*' , async (ctx , next) =>{
     await next();
 })
 
-
-router.get('/user' , user.getUser );
+// user.getUser
+router.post('/user', Koabody() , ctx =>{
+    
+    console.log( JSON.stringify( ctx.request.body) );
+    ctx.body = 456
+});
 
 
 

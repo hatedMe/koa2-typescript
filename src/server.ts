@@ -8,17 +8,26 @@
 
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
+import * as DBinit from './DBinit';
+import * as Koabody from 'koa-body';
+
 
 
 const app = new Koa();
-// const router = new Router();
 
+// DBinit.connect();
 
-// router.get('/', ctx =>{
-//     ctx.body = 'hi koa and ts@@@'
-// });
 
 import { router } from './router/index';
+// app.use( Koabody() );
+
+// app.use((ctx ,next ) => {
+//     // ctx.body = `Request Body: ${JSON.stringify(ctx.request.body)}`;
+//     console.log( ctx.request.body );
+//     next();
+// });
+
+// app.use( Koabody() );
 app.use(router.routes()).use(router.allowedMethods());
 
 // app.use( router.routes() );
